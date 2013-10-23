@@ -1,0 +1,9 @@
+;;; -*- coding: utf-8 -*-
+(("/Users/sufyan/.emacs.d/.gitignore" . 8)
+ ("/Users/sufyan/.emacs.d/custom.el" . 595)
+ ("/Users/sufyan/.emacs.d/el-get/.loaddefs.el" . 82758)
+ ("/Users/sufyan/.emacs.d/el-get/el-get/recipes/slime.rcp" . 357)
+ ("/Users/sufyan/.emacs.d/el-get/org-mode/lisp/org-loaddefs.el" . 100550)
+ ("/Users/sufyan/.emacs.d/init.el" . 1679)
+ ("/Users/sufyan/.emacs.d/user/sufyan/00-sync-el-get-packages.el" . 162)
+ ("/Users/sufyan/.emacs.d/user/sufyan/01-appearance.el" . 22))
