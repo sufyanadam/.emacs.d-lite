@@ -3,14 +3,14 @@
 (setq sa-my-packages
       (append
        '(
-	 rvm
 	 rcodetools
-	 org-mode
-	 emacs-w3m
-	 emacs-jabber
-	 zencoding-mode
-	 zenburn-theme
-	 slime
+	 ;; org-mode
+	 ;; emacs-w3m
+	 ;; emacs-jabber
+	 ;; zencoding-mode
+	 ;; zenburn-theme
+	 ;; slime
+	 ;; exec-path-from-shell
 	 )
        (mapcar 'el-get-source-name el-get-sources)))
 

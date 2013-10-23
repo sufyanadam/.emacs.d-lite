@@ -30,11 +30,6 @@
 ;; Are we on a mac?
 (setq is-mac (equal system-type 'darwin))
 
-;; Emacs server
-(require 'server)
-(unless (server-running-p)
-  (server-start))
-
 ;; Setup el-get
 (setq el-get-user-package-directory (expand-file-name "el-get-init-files" user-emacs-directory))
 
@@ -48,7 +43,69 @@
 
 (el-get 'sync)
 
-;; Conclude init by setting up specifics for the current user
+;; Setup package
+(require 'setup-package)
+
+;; Install extensions if they're missing
+(defun init--install-packages ()
+  (packages-install
+   '(
+     rvm
+     org
+     w3m
+     jabber
+     zencoding-mode
+     zenburn-theme
+     slime
+     exec-path-from-shell
+     smex
+     ;; magit
+     ;; paredit
+     ;; move-text
+     ;; god-mode
+     ;; gist
+     ;; htmlize
+     ;; visual-regexp
+     ;; flycheck
+     flx
+     flx-ido
+     ;; css-eldoc
+     ;; yasnippet
+     ;; smartparens
+     ido-vertical-mode
+     ido-at-point
+     ido-ubiquitous
+     ;; simple-httpd
+     ;; guide-key
+     ;; nodejs-repl
+     ;; restclient
+     ;; highlight-escape-sequences
+     ;; whitespace-cleanup-mode
+     ;; elisp-slime-nav
+     ;; git-commit-mode
+     ;; gitconfig-mode
+     ;; gitignore-mode
+     ;; clojure-mode
+     ;; nrepl
+     )))
+
+(condition-case nil
+    (init--install-packages)
+  (error
+   (package-refresh-contents)
+   (init--install-packages)))
+
+;; Specifics for the current user
 (when (file-exists-p user-settings-dir)
   (mapc 'load (directory-files user-settings-dir nil "^[^#].*el$")))
 (put 'erase-buffer 'disabled nil)
+
+
+;; Emacs server
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
+
+;Increase GC threshold
+(setq gc-cons-threshold 20000000)
