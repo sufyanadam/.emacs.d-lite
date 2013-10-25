@@ -1,12 +1,9 @@
-(require 'web-mode)
-(defun web-mode-hook ()
-  "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  )
-(add-hook 'web-mode-hook  'web-mode-hook)
+(defun setup-simplezen ()
+  (require 'simplezen)
+  (define-key html-mode-map (kbd "TAB") 'simplezen-expand-or-indent-for-tab)
+)
 
+(add-hook 'web-mode-hook 'setup-simplezen)
 
 (defun skip-to-next-blank-line ()
   (interactive)
@@ -35,21 +32,18 @@
     (indent-region beg (+ end 11))
     (goto-char (+ beg 4))))
 
-(defun --setup-simplezen ()
-  (require 'simplezen)
-  (set (make-local-variable 'yas-fallback-behavior)
-       '(apply simplezen-expand-or-indent-for-tab)))
-
-(add-hook 'web-mode-hook '--setup-simplezen)
-
-(eval-after-load "web-mode"
+(eval-after-load "sgml-mode"
   '(progn
+     ;; don't include equal sign in symbols
+     (modify-syntax-entry ?= "." html-mode-syntax-table)
+
      (define-key web-mode-map [remap forward-paragraph] 'skip-to-next-blank-line)
      (define-key web-mode-map [remap backward-paragraph] 'skip-to-previous-blank-line)
      (define-key web-mode-map (kbd "C-c C-w") 'html-wrap-in-tag)
      (define-key web-mode-map (kbd "/") nil) ;; no buggy matching of slashes
 
      (define-key web-mode-map (kbd "C-c C-d") 'ng-snip-show-docs-at-point)
+
 
      (require 'tagedit)
 
@@ -74,5 +68,3 @@
 ;; after deleting a tag, indent properly
 (defadvice sgml-delete-tag (after reindent activate)
   (indent-region (point-min) (point-max)))
-
-(provide 'setup-web-mode)

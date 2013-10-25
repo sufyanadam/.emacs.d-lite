@@ -57,7 +57,7 @@
      org
      w3m
      jabber
-     zencoding-mode
+     simplezen
      zenburn-theme
      slime
      ac-slime
@@ -71,6 +71,8 @@
      s
      eproject
      rinari
+     multiple-cursors
+     tagedit
      ;; god-mode
      ;; gist
      htmlize
@@ -119,8 +121,7 @@
 
 ;; Setup extensions
 (require 'setup-ffip)
-
-(eval-after-load 'html-mode '(require setup-html-mode))
+(require 'setup-html-mode)
 
 ;; Start autocomplete
 (require 'auto-complete-config)
@@ -146,6 +147,8 @@
 (dolist (file (directory-files defuns-dir t "\\w+"))
   (when (file-regular-p file)
     (load file)))
+
+(require 'multiple-cursors)
 
 ;; Lets start with a smattering of sanity
 (require 'sane-defaults)

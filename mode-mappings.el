@@ -8,7 +8,7 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-
+(add-to-list 'auto-mode-alist '("\\.rhtml\\'" . web-mode))
 ;; YAML
 (autoload 'yaml-mode "yaml-mode")
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
@@ -40,9 +40,9 @@
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
 ;; HTML
-(add-to-list 'auto-mode-alist '("\\.html\\'" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.tag$" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.vm$" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tag$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.vm$" . web-mode))
 
 ;; JSP
 (autoload 'crappy-jsp-mode "crappy-jsp-mode")
@@ -50,7 +50,7 @@
 (add-to-list 'auto-mode-alist '("\\.jspf$" . crappy-jsp-mode))
 
 ;; Ruby
-(autoload 'rhtml-mode "rhtml-mode")
+;;(autoload 'rhtml-mode "rhtml-mode")
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.watchr$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
