@@ -121,7 +121,6 @@
 
 ;; Setup extensions
 (require 'setup-ffip)
-(require 'setup-html-mode)
 
 ;; Start autocomplete
 (require 'auto-complete-config)
