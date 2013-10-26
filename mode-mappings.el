@@ -104,7 +104,7 @@
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
 ;; C-mode
-(add-to-list 'auto-mode-alist '("\\.rxc$" . c-mode))
+(add-to-list 'auto-mode-alist '("\\.nxc$" . c-mode))
 
 ;; Apache config
 (autoload 'apache-mode "apache-mode" nil t)

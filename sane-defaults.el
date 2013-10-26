@@ -61,6 +61,7 @@
 
 ;; Never insert tabs
 (set-default 'indent-tabs-mode nil)
+(setq-default tab-width 2)
 
 ;; Show me empty lines after buffer end
 (set-default 'indicate-empty-lines t)

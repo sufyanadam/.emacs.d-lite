@@ -51,6 +51,7 @@
   (packages-install
    '(
      auto-complete
+     evil
      rsense
      helm
      rvm
@@ -164,3 +165,4 @@
 
 ;Increase GC threshold
 (setq gc-cons-threshold 20000000)
+
