@@ -3,8 +3,13 @@
 (setq my-packages
       (append
        '(
-	 rcodetools
-	 )
+         ri-emacs
+         rcodetools
+         ruby-electric
+         ;anything
+         ;anything-show-completion
+         ;anything-rcodetools
+         )
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get-cleanup my-packages)

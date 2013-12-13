@@ -72,6 +72,13 @@
      s
      eproject
      rinari
+     inf-ruby
+     ;;ruby-electric
+     
+     ;; anything
+     ;; anything-show-completion
+     ;; anything-rcodetools
+
      multiple-cursors
      tagedit
      ;; god-mode
@@ -163,6 +170,6 @@
 (unless (server-running-p)
   (server-start))
 
-;Increase GC threshold
+                                        ;Increase GC threshold
 (setq gc-cons-threshold 20000000)
 
