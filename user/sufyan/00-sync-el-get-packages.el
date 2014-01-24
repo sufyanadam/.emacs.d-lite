@@ -6,6 +6,7 @@
          ri-emacs
          rcodetools
          ruby-electric
+         org-mode
          ;anything
          ;anything-show-completion
          ;anything-rcodetools

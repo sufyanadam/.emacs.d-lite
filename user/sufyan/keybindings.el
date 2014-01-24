@@ -36,6 +36,9 @@
 (global-set-key (kbd "M-`") 'file-cache-minibuffer-complete)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
+;; erase buffer
+(global-set-key (kbd "M-k") 'erase-buffer)
+
 ;; toggle two most recent buffers
 (fset 'quick-switch-buffer [?\C-x ?b return])
 (global-set-key (kbd "s-b") 'quick-switch-buffer)
