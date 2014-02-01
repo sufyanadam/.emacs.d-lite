@@ -58,6 +58,9 @@
 ;; Help should search more than just commands
 (global-set-key (kbd "<f1> a") 'apropos)
 
+;; F5 to run xmp in a ruby buffer
+(global-set-key (kbd "<f5>") 'xmp)
+
 ;; Should be able to eval-and-replace anywhere.
 (global-set-key (kbd "C-c C-e") 'eval-and-replace)
 
