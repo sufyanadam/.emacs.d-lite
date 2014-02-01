@@ -7,6 +7,9 @@
          rcodetools
          ruby-electric
          org-mode
+         epl
+         pkg-info
+         projectile
          ;anything
          ;anything-show-completion
          ;anything-rcodetools
