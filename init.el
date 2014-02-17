@@ -60,7 +60,7 @@
      jabber
      simplezen
      zenburn-theme
-     slime
+     ;;slime
      ac-slime
      exec-path-from-shell
      smex
