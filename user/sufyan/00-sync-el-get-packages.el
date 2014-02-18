@@ -12,6 +12,8 @@
          projectile
          nav
          window-numbering
+         cedet
+         ecb
          ;anything
          ;anything-show-completion
          ;anything-rcodetools
