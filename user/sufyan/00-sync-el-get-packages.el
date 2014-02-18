@@ -10,6 +10,8 @@
          epl
          pkg-info
          projectile
+         nav
+         window-numbering
          ;anything
          ;anything-show-completion
          ;anything-rcodetools
