@@ -50,7 +50,7 @@
 (defun init--install-packages ()
   (packages-install
    '(
-     auto-complete
+     ;auto-complete
      evil
      rsense
      helm

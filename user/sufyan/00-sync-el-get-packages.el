@@ -12,8 +12,12 @@
          projectile
          nav
          window-numbering
-         cedet
-         ecb
+         edbi
+         js2-refactor
+         
+         ;deferred 
+         ;epc
+         ;ctable
          ;anything
          ;anything-show-completion
          ;anything-rcodetools
