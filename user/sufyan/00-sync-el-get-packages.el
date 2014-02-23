@@ -15,6 +15,8 @@
          edbi
          js2-refactor
          expand-region
+         skewer-mode
+         skewer-less
          ;deferred 
          ;epc
          ;ctable
