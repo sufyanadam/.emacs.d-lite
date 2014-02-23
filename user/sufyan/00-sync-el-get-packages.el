@@ -17,6 +17,7 @@
          expand-region
          skewer-mode
          skewer-less
+         coffee-mode
          ;deferred 
          ;epc
          ;ctable
