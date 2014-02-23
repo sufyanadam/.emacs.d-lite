@@ -18,6 +18,7 @@
          skewer-mode
          skewer-less
          coffee-mode
+         haml-mode
          ;deferred 
          ;epc
          ;ctable
