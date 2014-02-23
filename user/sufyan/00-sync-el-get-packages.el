@@ -14,7 +14,7 @@
          window-numbering
          edbi
          js2-refactor
-         
+         expand-region
          ;deferred 
          ;epc
          ;ctable
