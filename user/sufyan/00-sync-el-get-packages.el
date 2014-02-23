@@ -19,6 +19,7 @@
          skewer-less
          coffee-mode
          haml-mode
+         slim-mode
          ;deferred 
          ;epc
          ;ctable
