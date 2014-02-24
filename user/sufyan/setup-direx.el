@@ -1,1 +1,1 @@
-(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory-other-window)
+(global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root-other-window)
