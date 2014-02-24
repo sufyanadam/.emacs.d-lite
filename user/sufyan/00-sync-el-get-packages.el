@@ -20,6 +20,8 @@
          coffee-mode
          haml-mode
          slim-mode
+         popwin
+         direx
          ;deferred 
          ;epc
          ;ctable
