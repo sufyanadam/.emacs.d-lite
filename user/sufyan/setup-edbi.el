@@ -1,1 +1,1 @@
-(setenv "PERL5LIB" "/Users/sufyan/perl5/lib/perl5")
+(setenv "PERL5LIB" (concat "/Users/" user-login-name "/perl5/lib/perl5"))

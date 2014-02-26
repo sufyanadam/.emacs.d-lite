@@ -162,3 +162,6 @@
 (define-key occur-mode-map (kbd "v") 'occur-mode-display-occurrence)
 (define-key occur-mode-map (kbd "n") 'next-line)
 (define-key occur-mode-map (kbd "p") 'previous-line)
+
+;; helm-mode
+(global-set-key (kbd "C-c h") 'helm-mini)

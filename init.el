@@ -13,6 +13,11 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
+;; Settings for currently logged in user
+;;  (setq user-settings-dir
+;;       (concat user-emacs-directory "users/" user-login-name))
+;; (add-to-list 'load-path user-settings-dir)
+
 ;; Write backup files to own directory
 (setq backup-directory-alist
       `(("." . ,(expand-file-name
@@ -28,7 +33,110 @@
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
 ;; Are we on a mac?
-(setq running-on-a-mac (equal system-type 'darwin))
+(setq is-mac (equal system-type 'darwin))
+
+;; Setup packages
+(require 'setup-package)
+
+;; Install extensions if they're missing
+(defun init--install-packages ()
+  (packages-install
+   '(
+     auto-complete
+     bash-completion
+     fill-column-indicator
+     browse-kill-ring
+     evil
+     rsense
+     helm
+     org
+     w3m
+     jabber
+     simplezen
+     zenburn-theme
+     ac-slime
+     ac-inf-ruby
+     exec-path-from-shell
+     smex
+     magit
+     paredit
+     move-text
+     pretty-symbols
+     dash
+     s
+     eproject
+     rvm 
+     inf-ruby
+     ;;ruby-electric
+     rinari
+     epl
+     pkg-info
+     projectile
+     window-numbering
+     edbi
+     js2-refactor
+     jump-char
+     expand-region
+     skewer-mode
+     skewer-less
+     coffee-mode
+     haml-mode
+     slim-mode
+     popwin
+     direx
+     magit
+     multifiles
+     git-commit-mode
+     git-rebase-mode
+     gitconfig-mode
+     gitignore-mode
+     multiple-cursors
+     visual-regexp
+     visual-regexp-steroids
+     anything
+     multiple-cursors
+     tagedit
+     god-mode
+     gist
+     htmlize
+     flycheck
+     flx
+     flx-ido
+     css-eldoc
+     yasnippet
+     smartparens
+     ido-vertical-mode
+     ido-at-point
+     ido-ubiquitous
+     simple-httpd
+     guide-key
+     nodejs-repl
+     restclient
+     highlight-escape-sequences
+     whitespace-cleanup-mode
+     elisp-slime-nav
+     git-commit-mode
+     gitconfig-mode
+     gitignore-mode
+     clojure-mode
+     find-file-in-project
+     smooth-scrolling
+     smart-forward
+     change-inner
+     undo-tree
+     visual-regexp
+     visual-regexp-steroids
+     web-mode
+     wgrep
+     cider
+     )))
+
+(condition-case nil
+    (init--install-packages)
+  (error
+   (package-refresh-contents)
+   (init--install-packages)))
+
 
 ;; Setup el-get
 (setq el-get-user-package-directory (expand-file-name "el-get-init-files" user-emacs-directory))
@@ -43,111 +151,98 @@
 
 (el-get 'sync)
 
-;; Setup package
-(require 'setup-package)
+;; installed packages not in melpa
+(require 'el-get)
 
-;; Install extensions if they're missing
-(defun init--install-packages ()
-  (packages-install
-   '(
-     ;auto-complete
-     evil
-     rsense
-     helm
-     rvm
-     org
-     w3m
-     jabber
-     simplezen
-     zenburn-theme
-     ;;slime
-     ac-slime
-     exec-path-from-shell
-     smex
-     magit
-     paredit
-     move-text
-     pretty-symbols
-     dash
-     s
-     eproject
-     rinari
-     inf-ruby
-     ;;ruby-electric
-     
-     ;; anything
-     ;; anything-show-completion
-     ;; anything-rcodetools
+(setq my-packages
+      (append
+       '(
+         ri-emacs
+         rcodetools
+         ruby-electric
 
-     multiple-cursors
-     tagedit
-     ;; god-mode
-     ;; gist
-     htmlize
-     ;; visual-regexp
-     ;; flycheck
-     flx
-     flx-ido
-     ;; css-eldoc
-     ;; yasnippet
-     smartparens
-     ido-vertical-mode
-     ido-at-point
-     ido-ubiquitous
-     simple-httpd
-     ;; guide-key
-     nodejs-repl
-     restclient
-     ;; highlight-escape-sequences
-     whitespace-cleanup-mode
-     elisp-slime-nav
-     git-commit-mode
-     gitconfig-mode
-     gitignore-mode
-     clojure-mode
-     find-file-in-project
-     smooth-scrolling
-     undo-tree
-     visual-regexp
-     visual-regexp-steroids
-     web-mode
-     ;;nrepl
-     )))
+         ;;auto-complete
+                                        ;deferred 
+                                        ;epc
+                                        ;ctable
+                                        ;anything
+                                        ;anything-show-completion
+                                        ;anything-rcodetools
+         )
+       (mapcar 'el-get-source-name el-get-sources)))
 
-(condition-case nil
-    (init--install-packages)
-  (error
-   (package-refresh-contents)
-   (init--install-packages)))
+(el-get-cleanup my-packages)
+(el-get 'sync my-packages)
 
-;; Elisp go-to-definition with M-. and back again with M-,
-(autoload 'elisp-slime-nav-mode "elisp-slime-nav")
-(add-hook 'emacs-lisp-mode-hook (lambda () (elisp-slime-nav-mode t) (eldoc-mode 1)))
+
+;; Lets start with a smattering of sanity
+(require 'sane-defaults)
+
+;; Setup environment variables from the user's shell.
+(when is-mac
+  (require-package 'exec-path-from-shell)
+  (exec-path-from-shell-initialize))
+
+;; guide-key
+(require 'guide-key)
+(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x +"))
+(guide-key-mode 1)
+(setq guide-key/recursive-key-sequence-flag t)
+(setq guide-key/popup-window-position 'bottom)
+
+;; Setup extensions
+(eval-after-load 'ido '(require 'setup-ido))
+(eval-after-load 'org '(require 'setup-org))
+;;(eval-after-load 'dired '(require 'setup-dired))
+(eval-after-load 'magit '(require 'setup-magit))
+(eval-after-load 'grep '(require 'setup-rgrep))
+(eval-after-load 'shell '(require 'setup-shell))
+;(require 'setup-hippie)
+;(require 'setup-yasnippet)
+;(require 'setup-perspective)
+(require 'setup-ffip)
+(require 'setup-html-mode)
+(require 'setup-paredit)
+
+;; Font lock dash.el
+(eval-after-load "dash" '(dash-enable-font-lock))
+
+;; Default setup of smartparens
+(require 'smartparens-config)
+(setq sp-autoescape-string-quote nil)
+(--each '(css-mode-hook
+          restclient-mode-hook
+          js-mode-hook
+          java-mode
+          ruby-mode
+          markdown-mode
+          groovy-mode)
+  (add-hook it 'turn-on-smartparens-mode))
+
+;; Language specific setup files
+(eval-after-load 'js2-mode '(require 'setup-js2-mode))
+(eval-after-load 'ruby-mode '(require 'setup-ruby-mode))
+(eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
+(eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
+
+;; Load stuff on demand
+(autoload 'skewer-start "setup-skewer" nil t)
+(autoload 'skewer-demo "setup-skewer" nil t)
+(autoload 'flycheck-mode "setup-flycheck" nil t)
+(autoload 'auto-complete-mode "auto-complete" nil t)
 
 ;; Map files to modes
 (require 'mode-mappings)
 
-;; Setup extensions
-(require 'setup-ffip)
-
-;; Start autocomplete
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-config-default)
+;; Highlight escape sequences
+(require 'highlight-escape-sequences)
+(hes-mode)
+(put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
 
 ;; Visual regexp
 (require 'visual-regexp)
 (define-key global-map (kbd "M-&") 'vr/query-replace)
 (define-key global-map (kbd "M-/") 'vr/replace)
-
-;; Smart M-x is smart
-(require 'smex)
-(smex-initialize)
-
-(when running-on-a-mac (require 'mac))
-
-;; Fix whitespace on save, but only if the file was clean
-(global-whitespace-cleanup-mode)
 
 ;; Functions (load all files in defuns-dir)
 (setq defuns-dir (expand-file-name "defuns" user-emacs-directory))
@@ -155,21 +250,47 @@
   (when (file-regular-p file)
     (load file)))
 
+(require 'expand-region)
 (require 'multiple-cursors)
+(require 'delsel)
+(require 'jump-char)
+(require 'eproject)
+(require 'wgrep)
+(require 'smart-forward)
+(require 'change-inner)
+(require 'multifiles)
 
-;; Lets start with a smattering of sanity
-(require 'sane-defaults)
+;; Fill column indicator
+(require 'fill-column-indicator)
+(setq fci-rule-color "#111122")
 
-;; Specifics for the current user
-(when (file-exists-p user-settings-dir)
-  (mapc 'load (directory-files user-settings-dir nil "^[^#].*el$")))
-(put 'erase-buffer 'disabled nil)
+;; Browse kill ring
+(require 'browse-kill-ring)
+(setq browse-kill-ring-quit-action 'save-and-restore)
+
+;; Smart M-x is smart
+(require 'smex)
+(smex-initialize)
+
+;; Elisp go-to-definition with M-. and back again with M-,
+(autoload 'elisp-slime-nav-mode "elisp-slime-nav")
+(add-hook 'emacs-lisp-mode-hook (lambda () (elisp-slime-nav-mode t) (eldoc-mode 1)))
+
+(when is-mac (require 'mac))
+
+;; Fix whitespace on save, but only if the file was clean
+(global-whitespace-cleanup-mode)
+
+(require 'multiple-cursors)
 
 ;; Emacs server
 (require 'server)
 (unless (server-running-p)
   (server-start))
 
-                                        ;Increase GC threshold
-(setq gc-cons-threshold 20000000)
+;; Conclude init by setting up specifics for the current user
+(when (file-exists-p user-settings-dir)
+  (mapc 'load (directory-files user-settings-dir nil "^[^#].*el$")))
 
+;Increase GC threshold
+;(setq gc-cons-threshold 20000000)
