@@ -6,9 +6,9 @@
 
 
 (setq
-      font-lock-maximum-decoration t
-      color-theme-is-global t
-      truncate-partial-width-windows nil)
+ font-lock-maximum-decoration t
+ color-theme-is-global t
+ truncate-partial-width-windows nil)
 
 ;; Highlight current line
 (global-hl-line-mode 1)

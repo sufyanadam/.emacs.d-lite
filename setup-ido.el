@@ -1,5 +1,4 @@
 ;; Interactively Do Things
-
 (require 'ido)
 (ido-mode t)
 (setq ido-enable-prefix nil
@@ -13,6 +12,7 @@
 ;; Try out flx-ido for better flex matching between words
 (require 'flx-ido)
 (flx-ido-mode 1)
+
 ;; disable ido faces to see flx highlights.
 (setq ido-use-faces nil)
 

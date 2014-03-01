@@ -105,6 +105,7 @@
      css-eldoc
      yasnippet
      smartparens
+     idomenu
      ido-vertical-mode
      ido-at-point
      ido-ubiquitous
@@ -175,6 +176,82 @@
 (el-get 'sync my-packages)
 
 
+;; Setup appearance
+(load "appearance.el")
+
+;; Start autocomplete
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+
+;; Setup inf-ruby
+(autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
+(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+(add-hook 'after-init-hook 'inf-ruby-switch-setup)
+
+;; Setup ac-inf-ruby
+(eval-after-load 'auto-complete
+  '(add-to-list 'ac-modes 'inf-ruby-mode))
+(add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
+
+;; Setup coffee-mode
+(load "setup-coffee-mode.el")
+
+;; Setup direx
+(global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root-other-window)
+
+
+;; Setup display time
+(setq display-time-24hr-format t)
+(display-time)
+
+;; Setup edbi
+(setenv "PERL5LIB" (concat "/Users/" user-login-name "/perl5/lib/perl5"))
+
+;; Setup haml-mode
+(add-to-list 'auto-mode-alist '("\\.haml$" . haml-mode))
+
+;; Setup php-mode
+(add-hook 'php-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode nil
+                  tab-width 2)))
+
+;; Setup popwin
+(require 'popwin)
+(custom-set-variables
+ '(display-buffer-function 'popwin:display-buffer))
+
+;; Setup rcodetools
+(require 'rcodetools)
+
+;; Setup rinari
+(require 'rinari)
+
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (rvm-activate-corresponding-ruby)
+            (ruby-electric-mode)
+            (setq rinari-tags-file-name "TAGS")))
+
+
+;; Setup skewer mode
+(add-hook 'js2-mode-hook 'skewer-mode)
+(add-hook 'css-mode-hook 'skewer-css-mode)
+(add-hook 'html-mode-hook 'skewer-html-mode)
+
+;; Setup slime
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+(setq inferior-lisp-program "sbcl")
+
+(require 'ac-slime)
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'slime-repl-mode))
+
+
+
 ;; Lets start with a smattering of sanity
 (require 'sane-defaults)
 
@@ -182,6 +259,9 @@
 (when is-mac
   (require-package 'exec-path-from-shell)
   (exec-path-from-shell-initialize))
+(autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
 
 ;; guide-key
 (require 'guide-key)
