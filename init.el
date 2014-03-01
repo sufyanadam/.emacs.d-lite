@@ -329,7 +329,7 @@
     (load file)))
 
 ;; Load reasonably default keybindings
-(load "keybindings.el")
+(load "key-bindings.el")
 
 (require 'expand-region)
 (require 'multiple-cursors)
