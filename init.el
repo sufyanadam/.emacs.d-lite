@@ -367,6 +367,9 @@
 
 (require 'multiple-cursors)
 
+;; Show line numbers for all files
+;(add-hook 'find-file-hook (lambda () (linum-mode 1)))
+
 ;; Emacs server
 (require 'server)
 (unless (server-running-p)
