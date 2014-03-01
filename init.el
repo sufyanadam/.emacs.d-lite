@@ -102,6 +102,7 @@
      flycheck
      flx
      flx-ido
+     fold-this
      css-eldoc
      yasnippet
      smartparens
@@ -250,8 +251,6 @@
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'slime-repl-mode))
 
-
-
 ;; Lets start with a smattering of sanity
 (require 'sane-defaults)
 
@@ -261,7 +260,6 @@
   (exec-path-from-shell-initialize))
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-
 
 ;; guide-key
 (require 'guide-key)
@@ -329,6 +327,9 @@
 (dolist (file (directory-files defuns-dir t "\\w+"))
   (when (file-regular-p file)
     (load file)))
+
+;; Load reasonably default keybindings
+(load "keybindings.el")
 
 (require 'expand-region)
 (require 'multiple-cursors)
