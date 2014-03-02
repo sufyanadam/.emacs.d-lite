@@ -381,3 +381,4 @@
 
 ;Increase GC threshold
 ;(setq gc-cons-threshold 20000000)
+(put 'erase-buffer 'disabled nil)
