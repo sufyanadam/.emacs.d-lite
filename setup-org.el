@@ -15,5 +15,8 @@
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 (setq org-log-done t)
 (define-key global-map (kbd "M-<f6>") 'org-capture)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
 
 (provide 'setup-org)
