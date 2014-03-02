@@ -13,6 +13,7 @@
 
 (setq org-directory "~/Dropbox/org")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
+(setq org-log-done t)
 (define-key global-map (kbd "M-<f6>") 'org-capture)
 
 (provide 'setup-org)

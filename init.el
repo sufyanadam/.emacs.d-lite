@@ -50,6 +50,7 @@
      rsense
      helm
      org
+     org-plus-contrib
      w3m
      jabber
      simplezen
