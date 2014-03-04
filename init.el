@@ -9,15 +9,6 @@
 ;;Setup load path
 (load (expand-file-name "load-paths.el" user-emacs-directory))
 
-;; Keep emacs Custom-settings in separate file
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
-
-;; Settings for currently logged in user
-;;  (setq user-settings-dir
-;;       (concat user-emacs-directory "users/" user-login-name))
-;; (add-to-list 'load-path user-settings-dir)
-
 ;; Write backup files to own directory
 (setq backup-directory-alist
       `(("." . ,(expand-file-name
@@ -177,9 +168,12 @@
 (el-get-cleanup my-packages)
 (el-get 'sync my-packages)
 
-
 ;; Setup appearance
 (load "appearance.el")
+
+;; Keep emacs Custom-settings in separate file
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)
 
 ;; Start autocomplete
 (require 'auto-complete-config)
