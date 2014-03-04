@@ -168,12 +168,12 @@
 (el-get-cleanup my-packages)
 (el-get 'sync my-packages)
 
-;; Setup appearance
-(load "appearance.el")
-
 ;; Keep emacs Custom-settings in separate file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
+
+;; Setup appearance
+(load "appearance.el")
 
 ;; Start autocomplete
 (require 'auto-complete-config)
