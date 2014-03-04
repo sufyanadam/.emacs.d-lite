@@ -66,6 +66,8 @@
      projectile
      window-numbering
      edbi
+     js2-mode
+     ac-js2
      js2-refactor
      jump-char
      expand-region
