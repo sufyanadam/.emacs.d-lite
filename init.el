@@ -195,10 +195,6 @@
 ;; Setup coffee-mode
 (load "setup-coffee-mode.el")
 
-;; Setup direx
-(global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root-other-window)
-
-
 ;; Setup display time
 (setq display-time-24hr-format t)
 (display-time)

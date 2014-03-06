@@ -29,8 +29,12 @@
 (windmove-default-keybindings) ;; Shift+direction
 
 ;; Jump from file to containing directory
-(global-set-key (kbd "C-x C-j") 'dired-jump) (autoload 'dired-jump "dired")
-(global-set-key (kbd "C-x M-j") '(λ (dired-jump 1)))
+;(global-set-key (kbd "C-x C-j") 'dired-jump) (autoload 'dired-jump "dired")
+;(global-set-key (kbd "C-x M-j") '(λ (dired-jump 1)))
+
+;; Jump from file to containing directory in direx
+(global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root-other-window)
+
 
 ;; Find file in project
 (global-set-key (kbd "C-x o") 'find-file-in-project)
