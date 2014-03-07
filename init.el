@@ -33,98 +33,103 @@
 (defun init--install-packages ()
   (packages-install
    '(
+     ac-inf-ruby
+     ac-js2
+     ac-slime
+     ag
+     anything
      auto-complete
      bash-completion
-     fill-column-indicator
      browse-kill-ring
-     evil
-     rsense
-     helm
-     org
-     org-plus-contrib
-     w3m
-     jabber
-     simplezen
-     zenburn-theme
-     ac-slime
-     ac-inf-ruby
-     exec-path-from-shell
-     smex
-     magit
-     paredit
-     move-text
-     pretty-symbols
-     dash
-     s
-     eproject
-     rvm 
-     inf-ruby
-     ;;ruby-electric
-     rinari
-     epl
-     pkg-info
-     projectile
-     window-numbering
-     edbi
-     js2-mode
-     ac-js2
-     js2-refactor
-     jump-char
-     expand-region
-     skewer-mode
-     skewer-less
+     change-inner
+     cider
+     clojure-mode
      coffee-mode
-     haml-mode
-     slim-mode
-     popwin
+     css-eldoc
+     dash
+     dash-at-point
      direx
-     magit
-     multifiles
+     edbi
+     elisp-slime-nav
+     enh-ruby-mode
+     epl
+     eproject
+     evil
+     exec-path-from-shell
+     expand-region
+     fill-column-indicator
+     find-file-in-project
+     flx
+     flx-ido
+     flycheck
+     fold-this
+     gist
+     git-commit-mode
      git-commit-mode
      git-rebase-mode
      gitconfig-mode
-     gitignore-mode
-     multiple-cursors
-     visual-regexp
-     visual-regexp-steroids
-     anything
-     multiple-cursors
-     tagedit
-     god-mode
-     gist
-     htmlize
-     flycheck
-     flx
-     flx-ido
-     fold-this
-     css-eldoc
-     yasnippet
-     smartparens
-     idomenu
-     ido-vertical-mode
-     ido-at-point
-     ido-ubiquitous
-     simple-httpd
-     guide-key
-     nodejs-repl
-     restclient
-     highlight-escape-sequences
-     whitespace-cleanup-mode
-     elisp-slime-nav
-     git-commit-mode
      gitconfig-mode
      gitignore-mode
-     clojure-mode
-     find-file-in-project
-     smooth-scrolling
+     gitignore-mode
+     god-mode
+     guide-key
+     haml-mode
+     helm
+     highlight-escape-sequences
+     highlight-indentation
+     htmlize
+     ido-at-point
+     ido-ubiquitous
+     ido-vertical-mode
+     idomenu
+     inf-ruby
+     jabber
+     js2-mode
+     js2-refactor
+     jump-char
+     magit
+     magit
+     move-text
+     multifiles
+     multiple-cursors
+     nodejs-repl
+     org
+     org-plus-contrib
+     paredit
+     pkg-info
+     popwin
+     pretty-symbols
+     projectile
+     project-explorer
+     rainbow-mode
+     robe
+     restclient
+     rinari
+     rsense
+     rvm 
+     s
+     simple-httpd
+     simplezen
+     skewer-less
+     skewer-mode
+     slim-mode
      smart-forward
-     change-inner
+     smartparens
+     smex
+     smooth-scrolling
+     tagedit
      undo-tree
      visual-regexp
+     visual-regexp
      visual-regexp-steroids
+     visual-regexp-steroids
+     w3m
      web-mode
      wgrep
-     cider
+     whitespace-cleanup-mode
+     window-numbering
+     yasnippet
+     zenburn-theme
      )))
 
 (condition-case nil
@@ -181,6 +186,8 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
+(add-to-list 'ac-modes 'enh-ruby-mode)
+(add-to-list 'ac-modes 'web-mode)
 
 ;; Setup inf-ruby
 (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
@@ -228,6 +235,10 @@
             (ruby-electric-mode)
             (setq rinari-tags-file-name "TAGS")))
 
+(add-hook 'ruby-mode-hook 'robe-mode)
+(add-hook 'robe-mode-hook 'robe-ac-setup)
+
+(add-hook 'robe-mode-hook 'robe-start)
 
 ;; Setup skewer mode
 (add-hook 'js2-mode-hook 'skewer-mode)
