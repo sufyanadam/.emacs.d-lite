@@ -51,7 +51,7 @@
      direx
      edbi
      elisp-slime-nav
-     ;enh-ruby-mode
+     enh-ruby-mode
      epl
      eproject
      evil
@@ -231,6 +231,12 @@
 (require 'rinari)
 
 (add-hook 'ruby-mode-hook
+          (lambda ()
+            (rvm-activate-corresponding-ruby)
+            (ruby-electric-mode)
+            (setq rinari-tags-file-name "TAGS")))
+
+(add-hook 'enh-ruby-mode-hook
           (lambda ()
             (rvm-activate-corresponding-ruby)
             (ruby-electric-mode)
