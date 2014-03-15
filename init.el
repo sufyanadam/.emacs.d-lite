@@ -51,7 +51,7 @@
      direx
      edbi
      elisp-slime-nav
-     enh-ruby-mode
+     ;enh-ruby-mode
      epl
      eproject
      evil
@@ -187,6 +187,7 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
 (add-to-list 'ac-modes 'enh-ruby-mode)
+(add-to-list 'ac-modes 'ruby-mode)
 (add-to-list 'ac-modes 'web-mode)
 
 ;; Setup inf-ruby
