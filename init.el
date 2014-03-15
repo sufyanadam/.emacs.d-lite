@@ -236,10 +236,9 @@
             (ruby-electric-mode)
             (setq rinari-tags-file-name "TAGS")))
 
-(add-hook 'ruby-mode-hook 'robe-mode)
-(add-hook 'robe-mode-hook 'robe-ac-setup)
-
-(add-hook 'robe-mode-hook 'robe-start)
+;; (add-hook 'ruby-mode-hook 'robe-mode)
+;; (add-hook 'robe-mode-hook 'robe-ac-setup)
+;; (add-hook 'robe-mode-hook 'robe-start)
 
 ;; Setup skewer mode
 (add-hook 'js2-mode-hook 'skewer-mode)
